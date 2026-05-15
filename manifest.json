@@ -1,0 +1,21 @@
+{
+  "short_name": "BetGenius",
+  "name": "Bet Genius Analizador",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo-large.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0b0d14",
+  "display": "standalone",
+  "theme_color": "#e8273a",
+  "orientation": "portrait"
+}
