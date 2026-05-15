@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bet Genius — Match Predictor AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- ── TOPBAR ── -->
+        <div class="topbar">
+            <div class="brand">
+                <svg class="logo-svg" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="nG" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#1f2e56"/>
+                            <stop offset="100%" stop-color="#111c36"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Hexagon body -->
+                    <polygon points="65,5 119,35 119,95 65,125 11,95 11,35" fill="url(#nG)" stroke="#2d4070" stroke-width="2"/>
+                    <!-- Red chevron pair — top-left -->
+                    <polygon points="11,35 44,18 34,48" fill="#e8273a"/>
+                    <polygon points="25,26 58,10 46,42" fill="#e8273a" opacity=".55"/>
+                    <!-- Red chevron pair — bottom-right -->
+                    <polygon points="119,95 86,112 96,82" fill="#e8273a"/>
+                    <polygon points="105,104 72,120 84,88" fill="#e8273a" opacity=".55"/>
+                    <!-- BET text -->
+                    <text x="65" y="62" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="28" fill="#ffffff" letter-spacing="-1">BET</text>
+                    <!-- GENIUS text -->
+                    <text x="65" y="83" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="19" fill="#ffffff" letter-spacing="0">GENIUS</text>
+                    <!-- FREE text -->
+                    <text x="65" y="98" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="10" fill="#e8273a" letter-spacing="4">FREE</text>
+                </svg>
+                <div class="brand-text">
+                    <span class="brand-name">Bet Genius</span>
+                    <span class="brand-tag">⚡ Match Predictor AI</span>
+                </div>
+            </div>
+            <div class="vtag">v3.0 · BETANO</div>
+        </div>
+
+        <!-- ── HERO ── -->
+        <div class="hero">
+            <div class="hero-eye">Análisis Inteligente de Fútbol</div>
+            <h1>PREDICE<br><em>con datos</em></h1>
+            <p class="hero-desc">IA · estadísticas · psicología · bajas · stake calculado<br>solo mercados betano con cuota &gt; 1.60</p>
+            <div class="hero-pills">
+                <div class="pill"><span class="pill-n">15+</span><span class="pill-l">Mercados</span></div>
+                <div class="pill"><span class="pill-n">1.60</span><span class="pill-l">Cuota Mín.</span></div>
+                <div class="pill"><span class="pill-n">Kelly</span><span class="pill-l">Stake IA</span></div>
+                <div class="pill"><span class="pill-n">5</span><span class="pill-l">Picks Máx.</span></div>
+            </div>
+        </div>
+
+        <!-- ── CARD 1: Datos del Partido ── -->
+        <div class="card">
+            <div class="sh"><div class="sn">1</div><div class="st">Datos del Partido</div><div class="sl2"></div></div>
+            <div style="margin-bottom:14px">
+                <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:8px;text-transform:uppercase">Carga rápida →</div>
+                <div class="presets">
+                    <button class="pbtn" onclick="loadPreset('clasico')">⚽ El Clásico</button>
+                    <button class="pbtn" onclick="loadPreset('derbi')">🔴 Derbi Madrid</button>
+                    <button class="pbtn" onclick="loadPreset('champions')">🏆 Champions Final</button>
+                    <button class="pbtn" onclick="loadPreset('descenso')">🔻 Descenso</button>
+                </div>
+            </div>
+            <div class="vsrow">
+                <div class="field"><label>🏠 Equipo Local</label><input type="text" id="home" placeholder="Ej: Real Madrid"/></div>
+                <div class="vs-badge">VS</div>
+                <div class="field"><label>✈ Equipo Visitante</label><input type="text" id="away" placeholder="Ej: Barcelona"/></div>
+            </div>
+            <div class="g3">
+                <div class="field"><label>Competición</label><input type="text" id="league" placeholder="La Liga, UCL..."/></div>
+                <div class="field"><label>Fecha</label><input type="date" id="matchdate"/></div>
+                <div class="field"><label>Jornada / Fase</label><input type="text" id="round" placeholder="J32 · Cuartos..."/></div>
+            </div>
+        </div>
+
+        <!-- ── CARD 2: Análisis del Partido ── -->
+        <div class="card">
+            <div class="sh"><div class="sn">2</div><div class="st">Análisis del Partido</div><div class="sl2"></div></div>
+            <div class="tabs">
+                <button class="tbtn on" onclick="openTab('t-squad',this)">🩺 Plantillas</button>
+                <button class="tbtn" onclick="openTab('t-form',this)">📊 Forma</button>
+                <button class="tbtn" onclick="openTab('t-ctx',this)">🧠 Contexto</button>
+                <button class="tbtn" onclick="openTab('t-tac',this)">⚙ Táctico</button>
+            </div>
+
+            <div class="tpanel on" id="t-squad">
+                <div class="g2">
+                    <div class="field"><label>🔴 Bajas/Lesionados Local</label><textarea id="injHome" placeholder="Ej: Bellingham (rodilla 3 sem), Carvajal (sancionado)..."></textarea></div>
+                    <div class="field"><label>🔵 Bajas/Lesionados Visitante</label><textarea id="injAway" placeholder="Ej: Pedri (duda), Ter Stegen (lesión seria)..."></textarea></div>
+                </div>
+            </div>
+
+            <div class="tpanel" id="t-form">
+                <div class="g2 mb">
+                    <div class="field"><label>Forma Local (últ. 5)</label><input type="text" id="formHome" placeholder="Ej: W W D L W"/></div>
+                    <div class="field"><label>Forma Visitante (últ. 5)</label><input type="text" id="formAway" placeholder="Ej: L W W W D"/></div>
+                </div>
+                <div class="g2 mb">
+                    <div class="field"><label>Posición Liga Local</label><input type="text" id="posHome" placeholder="Ej: 1° (72 pts)"/></div>
+                    <div class="field"><label>Posición Liga Visitante</label><input type="text" id="posAway" placeholder="Ej: 4° (58 pts)"/></div>
+                </div>
+                <div class="g2">
+                    <div class="field"><label>Goles Temporada Local</label><input type="text" id="goalsHome" placeholder="Ej: 54 GF / 22 GC"/></div>
+                    <div class="field"><label>Goles Temporada Visitante</label><input type="text" id="goalsAway" placeholder="Ej: 48 GF / 30 GC"/></div>
+                </div>
+            </div>
+
+            <div class="tpanel" id="t-ctx">
+                <div class="field mb">
+                    <label>Contexto, motivación y factor psicológico</label>
+                    <textarea id="context" style="min-height:90px" placeholder="Ej: Derbi local, visitante necesita ganar para no descender, H2H últimos 5 (3W-1D-1L), clima lluvioso..."></textarea>
+                </div>
+                <div class="g2">
+                    <div class="field"><label>Clima / Terreno</label><input type="text" id="weather" placeholder="Ej: Lluvia intensa, césped pesado"/></div>
+                    <div class="field"><label>Árbitro (si relevante)</label><input type="text" id="referee" placeholder="Ej: Mateu Lahoz (tarjetero)"/></div>
+                </div>
+            </div>
+
+            <div class="tpanel" id="t-tac">
+                <p style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);margin-bottom:14px">Ajusta según estadísticas reales de la temporada (1=débil, 10=élite):</p>
+                <div class="slgrid">
+                    <div class="slitem">
+                        <div class="slrow"><span class="sllbl">⚔ Ataque Local</span><span class="slval" id="vAH">5</span></div>
+                        <div class="sltrack"><div class="slfill" id="fAH" style="width:44%"></div><input type="range" min="1" max="10" value="5" id="atkHome" oninput="sl(this,'vAH','fAH')"></div>
+                        <div class="sldots"><span class="sldot">Débil</span><span class="sldot">Élite</span></div>
+                    </div>
+                    <div class="slitem">
+                        <div class="slrow"><span class="sllbl">⚔ Ataque Visitante</span><span class="slval" id="vAA">5</span></div>
+                        <div class="sltrack"><div class="slfill" id="fAA" style="width:44%"></div><input type="range" min="1" max="10" value="5" id="atkAway" oninput="sl(this,'vAA','fAA')"></div>
+                        <div class="sldots"><span class="sldot">Débil</span><span class="sldot">Élite</span></div>
+                    </div>
+                    <div class="slitem">
+                        <div class="slrow"><span class="sllbl">🛡 Defensa Local</span><span class="slval" id="vDH">5</span></div>
+                        <div class="sltrack"><div class="slfill" id="fDH" style="width:44%"></div><input type="range" min="1" max="10" value="5" id="defHome" oninput="sl(this,'vDH','fDH')"></div>
+                        <div class="sldots"><span class="sldot">Débil</span><span class="sldot">Élite</span></div>
+                    </div>
+                    <div class="slitem">
+                        <div class="slrow"><span class="sllbl">🛡 Defensa Visitante</span><span class="slval" id="vDA">5</span></div>
+                        <div class="sltrack"><div class="slfill" id="fDA" style="width:44%"></div><input type="range" min="1" max="10" value="5" id="defAway" oninput="sl(this,'vDA','fDA')"></div>
+                        <div class="sldots"><span class="sldot">Débil</span><span class="sldot">Élite</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── CARD 3: Gestión de Bankroll ── -->
+        <div class="card">
+            <div class="sh"><div class="sn">3</div><div class="st">Gestión de Bankroll</div><div class="sl2"></div></div>
+            <div class="stake-section">
+                <div class="stake-title">💰 Configuración de Stake</div>
+                <div class="stake-grid">
+                    <div class="sf"><label>Bankroll Total</label><input type="number" id="bankroll" placeholder="Ej: 500" min="1"/></div>
+                    <div class="sf"><label>Moneda</label>
+                        <select id="currency">
+                            <option value="PEN">PEN (S/)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="CLP">CLP ($)</option>
+                            <option value="ARS">ARS ($)</option>
+                            <option value="MXN">MXN ($)</option>
+                        </select>
+                    </div>
+                    <div class="sf"><label>Método de Stake</label>
+                        <select id="stakeMethod">
+                            <option value="kelly">Criterio de Kelly</option>
+                            <option value="flat">Flat (% fijo)</option>
+                            <option value="prop">Proporcional</option>
+                        </select>
+                    </div>
+                    <div class="sf"><label>Stake Base (%)</label><input type="number" id="stakeBase" placeholder="Ej: 5" min="1" max="50" value="5"/></div>
+                    <div class="sf"><label>Stake Máximo (%)</label><input type="number" id="stakeMax" placeholder="Ej: 10" min="1" max="50" value="10"/></div>
+                    <div class="sf"><label>Perfil de Riesgo</label>
+                        <select id="riskProfile">
+                            <option value="conservador">Conservador</option>
+                            <option value="moderado" selected>Moderado</option>
+                            <option value="agresivo">Agresivo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <p style="font-size:12px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:.4px;line-height:1.6">
+                ℹ El stake por pick se calcula con el método elegido, considerando la probabilidad real estimada, cuota y perfil de riesgo. Kelly fraccionado (25%) para mayor seguridad.
+            </p>
+        </div>
+
+        <button class="btn-analyze" onclick="analyze()" id="btnAnalyze">
+            ⚡ ANALIZAR CON BET GENIUS AI
+        </button>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="lring"><div class="lring-inner">BG</div></div>
+            <div class="ltitle">PROCESANDO ANÁLISIS</div>
+            <ul class="lsteps">
+                <li class="lstep" id="s1">Evaluando estadísticas y tendencias</li>
+                <li class="lstep" id="s2">Analizando bajas y plantillas</li>
+                <li class="lstep" id="s3">Calculando probabilidades reales</li>
+                <li class="lstep" id="s4">Detectando value en mercados Betano</li>
+                <li class="lstep" id="s5">Calculando stakes óptimos</li>
+            </ul>
+        </div>
+
+        <!-- Error -->
+        <div class="errbox" id="errbox"></div>
+
+        <!-- Results -->
+        <div id="results"></div>
+
+        <footer>POWERED BY <span>BET GENIUS</span> · ANÁLISIS IA · BETANO · CUOTA &gt; 1.60 · +18</footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

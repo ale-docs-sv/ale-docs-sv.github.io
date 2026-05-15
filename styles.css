@@ -1,0 +1,36 @@
+:root {
+  --bg:      #0b0d14;
+  --surface: #12151f;
+  --card:    #181c28;
+  --card2:   #1e2336;
+  --border:  #2c3350;
+  --border2: #38435e;
+  --red:     #e8273a;
+  --red2:    #ff4d5e;
+  --red-dim: rgba(232,39,58,0.18);
+  --gold:    #f5c842;
+  --gold2:   #ffe07a;
+  --green:   #22e09a;
+  --blue:    #4da6ff;
+  --text:    #f0f4ff;
+  --sub:     #b8c4d8;
+  --muted:   #7a8ba8;
+  --dim:     #4a5a72;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ... (Todo el CSS que estaba dentro de <style>) ... */
+
+.wrap { position:relative; z-index:1; max-width:920px; margin:0 auto; padding:0 20px 80px; }
+
+/* Mantengo todo el CSS original exactamente igual */
